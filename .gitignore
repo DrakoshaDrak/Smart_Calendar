@@ -1,0 +1,30 @@
+# =====================
+# Backend
+# =====================
+/CalendarServer/build/
+calendar_server_review.zip
+
+# =====================
+# Build output
+# =====================
+dist/
+build/
+
+# =====================
+# Environment
+# =====================
+.env
+.env.*
+
+# =====================
+# IDE / OS
+# =====================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+*.log
+
+
+

@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - ./postgres-init/:/docker-entrypoint-initdb.d/
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  pgbouncer:
+    image: edoburu/pgbouncer
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+    ports:
+      - "6432:6432"
+    volumes:
+      - ./docker/pgbouncer:/etc/pgbouncer
+    depends_on:
+      - postgres
